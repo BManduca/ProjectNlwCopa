@@ -1,0 +1,733 @@
+===> NLW - Copa
+
+    => Setup do back-end
+        - Fastify: 
+            - Fastify é um framework web altamente focado em fornecer a melhor experiência de desenvolvedor com o mínimo de sobrecarga e uma 
+        poderosa arquitetura de plugins, inspirada no Hapi e Express. Até onde sabemos é um dos frameworks web mais rápidos existente hoje.
+            - É mais leve que o express.
+            - Semelhante ao express
+
+            quick start: npm install fastify
+            whi is using Fastify? Discord, elo7, Care.com, NearForm, Satiurn...
+            
+        - Prisma
+            - Ferramenta para fazer comunicação com o Banco de dados
+            - Querys (remoção, inserção, listagem, remoção...)
+
+        - Banco de dados
+            - SQLite
+        - Diagrama ERD
+        - Contagem de bolões
+
+    => Setup do front-end (React, Next.js, número de bolões)
+        - Fundamentos React
+        - Next.js
+        - Buscando contagem de bolões
+
+    => Setup de Mobile
+
+
+
+
+
+comandos:
+
+- npm init -y => para identificar que é um projeto que utiliza JS
+- npm i typescript -D => install TS
+    - obs.: o typescript hoje não é mais visto como uma linguagem opcional! Todas as grandes ferramentas e frameworks já utilizam esta como padrão. É uma ferramenta incrível e basicamente
+    o que o TS faz é add tipagem estática no código em si, já que o javascript é um código de tipagem dinâmica, ou seja, a variável pode ter seu tipo variando com o tempo ou com determinado uso.
+
+- rodando o setup do TS
+    rodar => npx tsc --init
+
+- o TS ele tem um compilador interno -> npx tsc
+- otimizando a parte de conversão de codigo através do compilador
+    => rodando: node src/server.js
+    - install: npm i tsx -D
+    - o NPX é meio que um pacote que automatiza, o processo de de compilação e execução, desta forma, 
+    fazer todo esse processo eito anteriormente não será mais necessário
+
+rodar a aplicação, sem precisar ficar compilando toda vez: npm run dev
+
+-install prisma(interface/programa de linha de comando somente 
+para automatizar algumas tarefas) => npm i prisma -D
+
+- npm i @prisma/client => pacote usado para conectar com o banco de dados na aplicação 
+
+=> na aplicação usaremos o banco de dados SQLite e para utilizar, é so usar o seguinte comando:
+    npx prisma init --datasource-provider SQLite, senao por padrao o prisma utiliza o postgress sql 
+
+-> cuid ou uuid | Algoritmos para geração de strings únicas
+
+=> comando ao ser executado, irá detectar que foi criado uma nova table no DB e vai ser solicitado o nome da migration
+
+    -> migration é um mecanismo usado dentro de aplicações Backend, para fazer versionamento de banco de dados, ou seja, 
+    são arquivos que tem instruções para criação de tabelas, alterações de tabelas, remoção de campos e por ai vai
+
+
+=> para visualizar realmente nosso Banco de dados, o prisma tem um comando pronto para isso 
+npx prisma studio e tudo acontece pelo navegador
+
+=> instalando um pacote como dependency de developer chamado prisma-erd-generator => npm i prisma-erd-generator @mermaid-js/mermaid-cli -D
+
+mermaid é basicamente um projeto para geração de diagramas através de codigo
+
+comando para dar start e gerar um diagrama => npx prisma generate
+
+npm i @fastify/cors => cors basicamente é um mecanismo de segurança usado na aplicação, para poder de alguma forma dizer quais 
+aplicações estão aptas a consumir os dados do nosso backend
+
+
+=> INICIANDO O LAYOUT FRONT
+(dando start no ŕojeto react)
+
+Existem diversas formas de criar um projeto react
+
+=> aqui em especifico estaremos utilizando o next, que no caso é um framework para react,que basicamente como 
+qualquer outro framewor, de outra tecnologia, ele acaba trazendo funcionalidades comuns de a gente ter em aplicações
+frontend de uma maneira mais fácil de ser utilizada, por exemplo, otimização de imagens, internacionalização, parte de roteamento,
+geração estática e server-side-rendering, suporte para TS, fast refresh(quando é atualizado um arquivo e logo em sequencia 
+já é refletido no navegador), suporte a css automático, api routes...
+
+-> todo projeto precisa usar next? Não!
+    -> é uma das tecnologias que estão mais hypadas no ecossistema react...
+
+=> como faz para criar o projeto?
+ - primeiramente precisa sair da pasta aonde se encontra o backend
+ - npx create-next-app@latest --use-npm (aqui estamos usando o npm para instalar as dependencias)
+
+
+PRIMEIRAMENTE => o next NÃO substitui o react
+
+tudo que é desenvolvido dentro do next, continua sendo react
+
+JSX => Javascript + XML
+
+XML é a sintaxe que esta por detras do HTML
+
+TSX => TypeScript + JSX  
+
+React é uma maneira de dividir a interface em várias partes menores, que quando são 
+unidas, formam a aplicação em si
+
+react trabalha totalmente e completamente com componentização, 
+que é no caso, onde podemos trabalhar com chamada de funções ou partes que desenvolvemos dentro do nosso código, 
+sem precisar ficar duplicando o mesmo sempre, como seria feito em um codigo HTML, CSS e JS, deixando o código 
+muito confuso e até mesmo bagunçado
+
+o react em si, traz de uma maneira simples, uma forma de trabalhar através da componentização de aplicações, ou seja, 
+ter a interface da minha aplicação dividida em várias partes menores, sendo assim, mas fácil de dar manutenção e ate mesmo, 
+de aplicar melhorias com o tempo
+
+
+os components no react podem ter comportamentos, ou propriedades diferentes, 
+por exemplo no caso do site ou aplicação do twitter, cada tweet tem sua peculiaridade, diferenciando um do 
+outro..
+
+tendo um texto diferente... 
+
+=> quando inserimos um codigo JS dentro do HTML, precisamos colocar {} por volta dessa parte 
+
+Ex.: 
+    <div>
+        <h1>Tweet</h1>
+        <p>{props.text}</p>
+    </div>
+
+=> as propriedades no HTML são conhecidos como atributos
+
+
+
+O React da a facilidade de manter um código/interface complexa, dividindo essa interface em pequenos componentes reativos, ou seja,
+components que reagem de uma maneira amigavel as ações do usuário.
+
+funcionalidades que o next traz de forma autoatizada, é a de file system routing
+ 
+
+ O next.js nasceu com uma premissa de trazer um funcionamento de server side rendering, ou seja, 
+ basicamente fornecer uma forma de construir a interface da aplicação, que é puramente construida hoje 
+ com JS, HTML e CSS, ou seja, coisas que são puramente frontends, coisas que o browser entende facilmente...
+ porém, através do lado do servidor
+
+
+ Server side rendering
+
+ O node é um exemplo aonde roda JS, mas agora, será que o node rodaria codigo react?
+
+ mas pra que? qual finalidade?
+
+
+
+quando usamos o next, além dele trazer pra gente coisas do front que já estamos acostumados, 
+como JS do front, o CSS, HTML... ele traz também quando executa o projeto com o next de forma 
+embutida e invisível, um servidor em Node, ou seja, um backend, assim como o servidor em Node
+como criamos aqui no projeto...
+
+
+porém, todo o codigo que colocamos dentro do nosso component, para fazer as requisições HTTP
+somente vai ser executado se o JS estiver habilitado (Preferences => Debbuger => Disable JS)
+
+para contornar isso, existe uma forma aonde o Next consegue executar essa requisição Http mesmo com 
+JS desabilitado
+
+
+agora como conseguimos rodar pelo lado do servidor, cpmo comentamos a cima... deixando tudo
+funcionando redondinho mesmo com JS desabilitado no debbuger do browser...
+
+
+através do uso do TS, é muito interessante toda a vez que temos uma função que recebe algum tipo 
+de parâmetro...é interessante dizer qual o formato desse parâmetro....
+
+
+
+------------------------------------------------------- Mobile --------------------------------------------------------
+
+React native: 
+https://reactnative.dev/
+
+através dessa linguagem que é incrível, é possível criar/desenvolver aplicações tanto para android quanto 
+para IOS, utilizando o react, o interessante neste ponto que não é necessário aprender uma linguagem nova, 
+pois através do react para o native é possível reutilizar muito material e aprendizado
+
+atraveś do RN é possível criar aplicações mobile nativas, ou seja, que vão renderizar interfaces nativas, 
+que será possível acessar todos os recursos nativos do dispositivo do user em si.
+
+
+
+Ao codar nossa aplicação e também ao executar a mesma, é possível ver ela carregando o bundle, 
+no caso é como se estivesse empacotando a nossa aplicação para assim enviar para o destino que foi escolhido..
+seja IOS ou Android... Mas como essa interface vai ser renderizada de forma nativa no dispositivo do user?
+    -> o react native consegue renderizar a interface nativas Graças a criação de interfaces de forma 
+    declarativa, dentro da aplicação, é declarado o que queremos renderizar e dentro do ambiente, 
+    seja android ou IOS, vai ser renderizado com component nativo utilizado pela plataforma 
+
+    aplicativos e components nativos
+    => Utiliza uma linguagem específica para um determinado sistema operacional e só pode ser usado na plataforma em 
+    questão.Sendo assim, um app nativo iOS é desenvolvido de acordo com as características do sistema operacional e não pode 
+    ser instalado em um aparelho Android ou de qualquer outro sistema.
+    
+    Essa particularidade permite que o aplicativo interaja e tenha a melhor usabilidade em relação às 
+    funcionalidades da plataforma, entre outras vantagens que vamos ver logo mais.
+    
+    Caso a empresa queira que o app seja instalado por usuários de duas ou mais plataformas, vai ser preciso construir 
+    um novo código para atender às especificidades de todos os sistemas operacionais.O WhatsApp, por exemplo, é um 
+    aplicativo nativo — desenvolveram uma versão exclusiva para usuários Android e outra para quem tem aparelho iOS.
+
+
+=> Expo
+    - tecnologia que primeiro facilita o ambiente de desenvolvimento, pois, graças ao Expo, 
+    não é necessário configurar um monte de coisas para desenvolver a aplicação... basta unicamente ter
+    o node instalado na máquina
+
+    o expo na documentação tem toda uma parte voltada pra instalação..
+    => https://docs.expo.dev/get-started/installation/
+
+    -> é possível fazer a instalação tanto pela expo cli, fazendo na própria máquina ou também através 
+    do npx
+
+    -> mas de maneira bem rápida, o que é necessário para instalar o expo, basicamente seria ter o node instalado, o git
+    e caso esteja no MacOS ou no Linux, seria interessante instalar o Watchman.
+
+    vantagens: 
+        - o expo tem um ambiente de desenvolvimento mais produtivo ou simplificado, para já sair codando, 
+        e não ficar gastando tempo com configurações 
+        - ponto 2, que faz o expo ser uma escolha interessante, é que o expo automatiza a instalação de uma série de bibliotecas
+        quando é necessário instalar na nossa aplicação...na própria documentação, temos 
+        uma API reference e nesta parte tem uma lista completa de API que o expo da suporte 
+
+
+    Expo GO: aplicativo que é instalado no seu dispositivo móvel, esta disponível tanto para apple quanto android
+
+
+    To run your project, navigate to the directory and run one of the following npm commands.
+
+    - cd nlwcopamobile
+    - npm run android
+    - npm run ios # you need to use macOS to build the iOS project - use the Expo app if you need 
+    to do iOS development without a Mac
+    - npm run web
+
+
+    Como o react native e o react são bem semelhantes... na parte de estilização, o mobile tem um conceito de densidade
+    de pixels, ou seja, cada tela de acordo com a qualidade e resolução da tela, a sua densidade de pixels pode variar...
+
+    desta forma, o px não é utilizado, porque o react native utiliza da estrategia de independência de pixels, trabalhando com pixels
+    físicos com pixels de software, tentando assim padroniza a renderização desses elementos independente da densidade de
+    pixels
+
+    assim podemos ver a tamanha semelhança que tem pra web com o react.
+
+    NativeBase: é uma component library, ou seja, ele tem vários components pronto para ser utilizado e esses components tem flexibilidade
+    para customizar da maneira como quiser....
+
+    ela é bem conhecida pela sua produtividade no intuito de desenvolver aplicações...
+
+    É possível estilizar os components do native base, através de propriedades...como por exemplo tamanho, icon, estilo carregando...
+
+
+    install native-base
+
+    npm install native-base
+
+    - react native svg é uma biblioteca importante para poder utilizar 
+    svg dentro da nossa aplicação, por padrão o react native não consegue lidar com svg e a instalação é 
+    feita com expo, como podemos ver abaixo e este comando é feito juntamente da chamada do executador de pacote npx
+    expo install react-native-svg@12.1.1
+
+    
+    install para evitar que em algumas versões por exemplo do iphone, por causa do novo design, 
+    posso esconder algo na tela.
+
+
+    para evitar conflitos, garantindo que a aplicação e as bibliotecas usem essa versão mais recente do react, 
+    usaremos a seguinte propriedade:
+    "overrides": { "react": "18.0.0" }
+
+    Porque o native base provider é importante?
+        ele compartilha com todos que estão dentro da aplicação, para que dentro da aplicação seja possível 
+        utilizar o que o native base prover para a nossa nossa aplicação
+
+
+    VStack => ela já tem um flexbox ativo.
+        -> flexbox ativo e utilizado para a nossa aplicação
+        -> a vue no react native, já se encontra com flex de 1 e assim não precisa 
+        colocar o display flex como na web, pois já vem com display flex ativo por padrão 
+
+        e o flexbox é utilizado para posicionar os elementos da nossa tela 
+
+        VStack (Vertical Stack)=> sempre deixa tudo uma embaixo da autra
+
+        no VStack, através das propriedades: alignItems="center" justifyContent="center"
+
+        o texto se encontra centralizado.
+
+        mas através de outro componente chamado Center do próprio NativeBase, que já faz tudo
+        isso de centralizar para a gente, neste caso trocariamos o componente VStack pelo
+        Center e podemos retirar a configurações alignItems="center" e justifyContent="center"
+
+        poupando assim essas duas propriedades
+
+
+    criando um arquivo ts para estilização e decoração do theme, é possível adicionar neste arquivo, tokens
+    de cores, tamanhos, fontes...
+
+    Tokens:
+
+    import { extendTheme } from 'native-base';
+
+    export const THEME = extendTheme({
+        colors: {
+            gray: {
+            950: '#09090A',
+            900: '#121214',
+            800: '#202024',
+            600: '#323238',
+            300: '#8D8D99',
+            200: '#C4C4CC',
+            },
+            green: {
+            500: '#047C3F'
+            },
+            yellow: {
+            500: '#F7DD43',
+            600: '#BBA317',
+            },
+            red: {
+            500: '#DB4437',
+            },
+            white: '#FFFFFF'
+        },
+        fonts: {
+            heading: 'Roboto_700Bold',
+            body: 'Roboto_400Regular',
+            medium: 'Roboto_500Medium'
+        },
+        fontSizes: {
+            xs: 12,
+            sm: 14,
+            md: 16,
+            lg: 20,
+            xl: 24,
+        },
+        sizes: {
+            14: 56
+        }
+    });
+
+
+    acessando o extendTheme do native-base, conseguimos estender, ou seja, criando um novo theme baseado no theme do 
+    native-base, porém, conseguimos sobreescrever as cores já definidase...
+
+    Pordemos também, padronizar as fontes, qual sendo a que queremos utilizar no heading, no body e medim..
+
+    pode alterar ou sobreescrever também os fontSizes
+
+    Themes => https://docs.nativebase.io/default-theme
+
+
+    Fonts Expo dev => https://docs.expo.dev/guides/using-custom-fonts/
+
+    o useFonts retorna um array e dentro do array definido teremos a informação se a fonte já foi carregada
+    no dispositivo, pois, se a fonte não estiver instalada no dispositivo, será feito automaticamente 
+    para nós, pois é um processo assincrono.
+
+
+    criando uma pasta components e dentro será armazenado todos os components da nossa aplicação
+
+    a ideia de componentização no react native é bem senmelhante ao do reactJS
+
+
+    flex{1} => utilizar todo o espaço existente para ele(elemento)
+
+
+
+    o que estudar VS. o que eu PRECISO estudar ou como eu devo estudar
+        - ter clareza no que você quer fazer ou o que você quer fazer
+        - ter clareza no que você quer dominar
+        - FOCO
+        - O tempo é um recurso cada vez mais limitado
+        - É Humanamente impossível dominar tudo!
+
+
+
+
+Aula 02 
+
+Tabelas presentes no projeto: Bolão, participantes, usuários, jogos, palpites
+
+
+participantes não seria mesma coisa que usuários?
+ - entao, de certa forma sim, porém, como o mesmo usuário, ele pode participar de mais de um bolao, 
+ é precisa ter um lugar para armazenar esse relacionamento, de quais bolões esse usuário esta 
+ participando e isso recebe o nome dentro do Banco relacional, de tabela pivot, que é a tabela 
+ que persiste no relacionamento de muitos pra muitos 
+
+
+ avatrUrl String? => no banco de dados o '?' ao lado do type significa que esse campo pode ser 
+ nullable, ou seja, pode estar vazio.. 
+
+
+ => criando relacionamento de tabelas no prisma
+
+    por exemplo o palpite sempre vai estar associado a um jogo 
+
+
+    Aula 02 => 15 minutos
+
+
+    - colunas presentes no banco (sql), são sempre as que tem o tipo(string, DateTime, Int) logo em sequencia do nome dado a mesma
+
+    -> criando um índice único, uma constraint key falando que na tabela seguinte, se for procurar por um user especifico e um 
+    bolao especifico, sempre teremos um único registro, pois são informações únicas, nunca irá se repetir
+
+    model Participant {
+        id     String @id @default(cuid())
+        userId String
+        poolId String
+
+        guesses Guess[]
+        user    User    @relation(fields: [userId], references: [id])
+        pool    Pool    @relation(fields: [poolId], references: [id])
+
+        @@unique([userId, poolId])
+    }
+
+    rodando o DB: npx prisma migrate dev 
+    npx prisma studio
+
+    seed bando de dados:
+        - arquivo que pré-popula o banco de dados, com alguns dados ficticios, principalmente para trabalhar em ambiente de desenvolvimento
+
+
+    Inserções encadeadas
+        quando é feito um create por exemplo no bolão, la no schema o bolão tem relacionamento com a tabela participants, desta forma o 
+        prisma permite dentro do data, inserir um participant ao mesmo tempo que eu crio o bolão
+
+        ao selecionar o participant, e ao abrir o objeto teremos 3 opções: 
+            - connect => Criando o bolão e quero conectar este bolão, o relacionamento de participants com um participant já existente (Conectar se exister, senão vai ser criado)
+            - connectOrCreate => 
+            - create => Criar um novo registro na tabela participants
+
+
+
+        Importante ao salvar datas em Banco de dados, sempre salvar com timestamp
+
+
+    
+    Para fazer a criação de bolões, iremos criar outra rota(/pool) pelo fastify, e eesta precisará de informações(params)...
+        => essas informações para a criação precisam vir na request
+        => Reply será a resposta que será dada, caso seja uma resposta simples, nem é preciso utilizar o reply no fastify, 
+        é so dar return na informação...Mas quando é preciso modificar ou ter uma resposta mais completa/complexa, ai sim 
+        precisa ser utilizado o reply
+
+
+    Http status code:
+        => todos que iniciam com 200, quer dizer que foi reproduzido com sucesso
+            => 200: sucess
+            => 201: resulta com sucesso e além disso foi criado um novo recurso na api
+
+
+        => para tratativas como por exemplo não aceitar o nome de um bolão como null, usarei a biblioteca de schema validation, chamada zod
+            - install: npm i zod
+            - ela não é somente uma biblioteca de validação, pois ela integra muito bem com TypeScript
+            - quando comentamos que o title é uma string e ao usar o método parse em const { title } = createPoolBody.parse(request.body)
+                - já ficou subentendido que o title existe dentro do meu body e é uma string
+
+
+    => library for generating random or sequential UUID (https://www.npmjs.com/package/short-unique-id)
+        - biblioteca utilziada para gerar os codes do bolões e não ter a possibilidade de haver colisões
+        - install: npm i short-unique-id
+
+
+    => partindo para o visual da aplicação web
+
+        - instalando o tailwind como dependencia de desenvolvimento:
+            => npm install -D tailwindcss postcss autoprefixer
+
+            => iniciando o tailwind
+                npx tailwindcss init -p
+
+        - agora dentro do arquivo tailwind.config.js 
+            - dentro do content
+                -colocaremos o endereço de onde vão estar os meus arquivos estilizados, 
+                que sera a pasta src => ./src, que esteja dentro de qualquer pasta aqui dentro (**) e 
+                arquivos que terminem com .tsx, onde possivelmente precisaremos de estilização, 
+                claro que são os components os components react ou seja, ficara assim: './src/**/.tsx'
+
+
+        - tailwind praticamente é um utilitario css para substituir a forma utilizada tradicionalmente, basicamente
+        a gente escreve a estilização do component, apartir das próprias classes do component.
+
+        através do tailwind, podemos aplicar a estilização na cor através do text-blue-500, por exemplo, aonde seria uma cor azulada de intesidade 500
+        podemos, também aplica o negrito através do font-bold e o tamanho do texto através do 'text-xl', aonde o xl é diretamente correspondente a 20px
+
+
+        - como podemos verificar na versão atual next do  ele não tem diretamente um arquivo HTML, aonde eu posso acessar o Head, o Body... então para isso, 
+        dentro da pasta pages, é preciso criar um arquivo chamado '_documet.tsx'
+
+        A diferença do html presente no react, do html tradicional, toda as tags precisam ser fechadas ou seja < />
+
+
+        Info: No react tudo vem de dentro do JS, por exemplo, importamos css do JS, importamos imagens do JS...
+
+        h-screen => faz com que a div tenha 100% da altura da tela (100vh)
+
+
+        - install axios => npm i axios
+            Axios é uma biblioteca responsavel por fazer chamadas http para o nosso backend, pois, desta forma conseguimos padronizar 
+            algumas coisas.
+
+
+
+    => Dentro do react, existe os States, que são nada mais que variáveis que serão manipuladas pelo component, porém, States são informações
+    que eu tenho acesso a atualização dessa variável em tempo real dentro do component
+
+    https://nextjs.org/docs/basic-features/data-fetching/get-static-props
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Aula 03: Entrando de cabeça no mundo mobile 
+
+    -> Desenvolver interfaces da nossa aplicação utilizando o native base, aonde iremos poder ver toda a produtividade que 
+    o native base proporciona na hora de desenvolver, bastante agilidade nas interfaces.
+
+
+
+    => Para exibir e utilizar o svg como component, alem da biblioteca react native svg, estaremos utilizando 
+    estaremos utilizando uma segunda biblitoeca que será:
+        - react native svg transformer 
+
+        - quando comentamos em utilizar o svg como component, é que estaremos utilizando o mesmo na seguinte estrutura:
+            => import Logo from "./logo.svg";
+            // usando realmente com os sinais de maior, barra e menor (< />) e tambem passando propriedades para o 'component' Logo como no exemplo abaixo.
+            => <Logo width={120} height={40} />
+
+
+    - para ter nossas proprias tipagens e nao ter problemas futuros com a componentização que estaremos criando, 
+    será criada uma pasta @types como exemplo inicial, criamos o arquivo svg.d.ts, com o seguinte conteudo:
+
+        declare module "*.svg" {
+            import React from 'react';
+            import { SvgProps } from "react-native-svg";
+            const content: React.FC<SvgProps>;
+            export default content;
+        }
+
+        copiado do link: https://github.com/kristerkari/react-native-svg-transformer
+
+
+        desta forma, os 'problemas' irão parar de acontecer
+
+        tempo: 13:22
+
+
+
+        através das propriedades, conseguimos deixar os components flexiveis e editar com facilidade!!
+
+
+        para ter acesso as tipagens e propriedades do Button, podemos importar do 
+        NativeBase, o IButtonProps e além das propriedades customizadas, podemos 
+        extender as propriedades da seguinte forma:
+
+            import { Button as ButtonNativeBase, Text, IButtonProps } from 'native-base'
+
+            interface Props extends IButtonProps {
+                title: string;
+            }
+
+            e ao voltar no button, presente no signIn, e der ctrl + space, conseguiremos 
+            visualizar todas as propriedades que queriamos , por exemplo, caso 
+            pretendemos colocar um icon do lado esquerdo ou direito do texto 
+            podemos usar o leftIcon ou o rightIcon
+
+
+            para utilizar e ter uma experiencia melhor com os icons na aplicação, iremos 
+            importar o component Icon do NativeBase e a biblioteca de Icons Fontisto do proprio expo (@expo/vector-icons)
+            e assim, conseguimos acessar os tokens de cor.
+            Dentro da chamada da propriedade leftIcon, definimos da seguinte forma:
+            <Icon as={Fontisto} name="google" color="white" size="md" />, aonde o as é 
+            a parte aonde passamos a chamada da biblioteca, depois o nome do icon, a color e o 
+            tamanho.
+
+            => quando definimos uma tipagem, temos o contêudo da nossa tipagem definido de maneira 
+            explicita...
+
+            => os tamanhos, cores e tudo mais definidos nas propriedades do button, 
+            podem ser acessadas em docs.nativebase.io/default-theme
+
+            time: 49 m
+
+            => na nossa aplicação teremos varias rotas do app e o usuário so terá acesso, se estiver logado, 
+            senao, ele so verá a tela de login 
+
+            o contexto ele permite que eu compartilhe com toda a aplicação que participa dessa parte 
+
+
+            na parte de AuthContext, importaremos os createContext, que pertence ao react (ContextApi)
+
+
+            - Autenticação com o google
+                - oauth: Protocolo de Autenticação, considerado um dos mais completos e seguros que existem
+                - Fluxo de autenticação:
+                    - Registrar o app no IDP (Identity provider) => fazer o fluxo de cadastrar
+                    nossa aplicação la no console da google, pois, a google precisa saber qual app
+                    que está tentando usar os dados do user para se autenticar e devolver essas infos 
+                    para o dispositivo
+                    - segundo ponto, o usuário irá clicar no button de autentica e vai abrir uma janela do navegador e ai 
+                    nesse momento, o user sai da nossa aplicação e vai para segundo plano e o navegador vai para primeiro
+                    plano, abrindo a página de autenticação do google, para user informar os dados dele, dai em diante 
+                    o backend, ou seja, a api do google vai validar a existência do usuário, se o usuário e senha 
+                    realmente existem, se está tudo correto e se sim, irá devolver um token de autenticação e esse 
+                    token de autenticação, será devolvido para o navegador que o usuário, pois o mesmo 
+                    nao voltou para a aplicação, então, precisamos pegar esse token e voltar o user para nossa aplicação
+                    e faremos isso através de um redirecionamento, para assim que o browser fechar, volta para a aplicação
+                    com esse token, e esse token é uma chave que identifica o user e apartir desse momento com essa chave
+                    o user vai conseguir obter acesso as informações do perfil dele.
+
+                - biblioteca AuthSession => https://docs.expo.dev/versions/latest/sdk/auth-session/
+                    - essa biblioteca facilita muito no processo de Autenticação, principalmente na parte de sair e voltar da 
+                    aplicação
+
+                    install: npx expo install expo-auth-session expo-random
+                        - para lidar com a parte de autenticação: expo-auth-session
+                        - para lidar com a estrategia que o oauth2 tem "Proof of key Exchange", ou seja, 
+                        Prova de troca de código de chave
+                            - garantindo apenas o aplicativo que acionou o fluxo de autorização inicial é capaz de trocar com êxito o código de 
+                            verificação por um JWT.
+
+                    - Para ajudar nesse processo de troca entre aplicação e browser, é preciso tambem ter instalado o WebBrowser
+                        - install => npx expo install expo-web-browser
+
+
+                - Para prosseguir no projeto, é preciso acessar console.cloud.google.com
+                    - criar um novo projeto
+                    - selecionar o mesmo na aba de projetos
+                    - acessar o menu de navegação
+                        - APIS e serviços 
+                                - tela de Permissão Oauth
+                                    - User Type: Externo, ou seja, para qualquer usuário que tenha uma conta do Google e apertar em criar
+                                    - configurar
+                                        - Adicionar nome do app
+                                        - adicionar seu email 
+                                        - adicionar email para dados de contato do desenvolvedor
+                                        - salvar e continuar
+                                        - configurar Escopo
+                                            - Escopos não confidenciais
+                                                - Adicionar ou remover Escopos(informações para acessar do user)
+                                                    - add info do email (userinfo.email)
+                                                    - add info do perfil do User (userinfo.profile)
+                                                    - button atualizar
+                                            - button Salvar e continuar
+
+                                        - Button de salvar e configurar
+                                    - button voltar para perfil
+
+                                    - enviar para prod (button Publicar aplicativo)
+                                        - enviar para prod
+                                        - confirmar
+                                    
+
+                                - Credenciais 
+                                    - Criar ID do Cliente Oauth
+                                        - Tipo de aplicativo => Aplicativo da Web
+                                        - Nome => nlwcopamobile
+                                        - Origens JavaScript Autorizadas 
+                                            - ir em https://docs.expo.dev/guides/authentication/#google e procurar por 
+                                            Create a new Google Client ID that will be used with expoClientId
+                                                - URIs (Authorized JavaScript origins): https://auth.expo.io
+                                        - Authorized redirect URIs
+                                            - Até é possível conseguir essa URI de maneira manual, porém,
+                                            existe uma forma automatica dentro da nossa aplicação, para conseguir essa info
+                                            - subir novamente a aplicação
+                                            - Atravé do AuthSession, podemos utilizar a function makeRedirectUri(), 
+                                            passando como parametro o useProxy, ficando da seguinte forma:
+                                                - AuthSession.makeRedirectUri({ useProxy: true })
+                                                
+                                                - Ao dar um console.log() nessa operação, conseguiremos a URI de redirecionamento.
+                                                - Sendo assim conseguiremos finalizar e criar o ID do cliente OAuth.
+
+                                
+                    - Para iniciar o fluxo de autenticação
+                        - acessando através de um array, aonde estaremos acessando a request, 
+                        a response e também pegar uma function através de promptAsync e essa
+                        function permite que seja iniciado o fluxo de autenticação, dentro da função 
+                        signIn
+
+                        - criarei um state para anotar se o fluxo de autenticação esta acontecendo 
+                        - por padrão esse state começara com valor false, ou seja, começa como 
+                        não carregando.... porque para toda vez que começar um fluxo de autenticação, 
+                        vai ser ativado o setIsUserLoading, passando valor true, independente se deu certo ou
+                        errado, no finally vamos desativar o setIsUserLoading...
+
+
+                    const [ isUserLoading, setIsUserLoading ] = useState(false);
+                    
+                    
+                    const [ request, response, promptAsync ] = Google.useAuthRequest({
+                        clientId: '977466811857-d1b942519itburmduqqjj2430njv79if.apps.googleusercontent.com',
+                        redirectUri: 'AuthSession.makeRedirectUri({ useProxy: true })',
+                        scopes: [ 'profile', 'email' ]
+                    });
+
+                    
+                    //garantindo que nossa aplicação não quebre por algum motivo 
+                    async function signIn() {
+                        try {
+                            
+                        } catch (error) {
+                            //iremos lançar o erro de fato para a function ou lugar que 
+                            //chamou esse signIn, então jogamos o erro novamente para lá, 
+                            //para tratar num lugar que realmente esteja tentando utilizar essa
+                            function
+                        }
+                    }
+
+
+time-stop: 01:11:00
+
+
+server => npm run dev
+web => npm run dev
+DB => npx prisma studio
+mobile => npm start ou npx expo start

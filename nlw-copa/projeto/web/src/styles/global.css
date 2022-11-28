@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+
+// opção no chrome que melhora a renderização das fontes (voltado para os detalhes)
+body {
+    -webkit-font-smoothing: antialiased;
+}
