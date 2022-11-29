@@ -1,6 +1,6 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 import * as Google from "expo-auth-session/providers/google";
-import * as AuthSession from "expo-auth-session";
+import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from "expo-web-browser";
 
 WebBrowser.maybeCompleteAuthSession();
@@ -29,16 +29,15 @@ export const AuthContext = createContext({} as AuthContextDataProps);
     
     AuthContextProvider => permite compartilha o context com toda a app
 */
-export function AuthContextProvider({ children }: AuthProviderProps) {
+export function AuthContextProvider({ children }) {
 
-    // console.log(AuthSession.makeRedirectUri({ useProxy: true }));
-
+    const [ user, setUser ] = useState<UserProps>({} as UserProps);
     const [ isUserLoading, setIsUserLoading ] = useState(false);
 
     const [ request, response, promptAsync ] = Google.useAuthRequest({
-        clientId: '977466811857-d1b942519itburmduqqjj2430njv79if.apps.googleusercontent.com',
-        redirectUri: 'AuthSession.makeRedirectUri({ useProxy: true })',
-        scopes: [ 'profile', 'email' ]
+        clientId: '977466811857-itqcon8cu2ajcj552u54r6d8c0qejcs2.apps.googleusercontent.com',
+        redirectUri: AuthSession.makeRedirectUri({ useProxy: true }),
+        scopes: ['profile', 'email']
     });
 
     async function signIn() {
@@ -46,23 +45,30 @@ export function AuthContextProvider({ children }: AuthProviderProps) {
             setIsUserLoading(true);
             await promptAsync();
         } catch (error) {
-            console.error(error);
+            console.log(error);
             throw error;
         } finally {
             setIsUserLoading(false);
         }
     }
 
+    async function signInWithGoogle(access_token: string) {
+        console.log("TOKEN DE AUTENTICAÇÃO ===>", access_token);
+    }
+
+    useEffect(() => {
+        if (response?.type === 'success' && response.authentication?.accessToken) {
+            signInWithGoogle(response.authentication.accessToken);
+        }
+    }, [response])
+
     return (
         <AuthContext.Provider value={{
             signIn,
             isUserLoading,
-            user: {
-                name: 'Manduca',
-                avatarUrl: 'https://github.com/BManduca.png',
-            }
+            user
         }}>
-            { children }
+            {children}
         </AuthContext.Provider>
     )
 

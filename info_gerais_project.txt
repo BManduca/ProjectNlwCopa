@@ -724,10 +724,42 @@ Aula 03: Entrando de cabeça no mundo mobile
                     }
 
 
-time-stop: 01:11:00
+                    - Para não mais precisarmos ficar passando informações de um objeto nos valores do user presente
+                    no AuthContext.provider, para isso ser ou funcionar de uma forma melhor, será usado o hook
+                    useEffect do react, que executa alguma logica ou função assim que o component é renderizado
+
+                    neste caso, o useEffect será usado para ficar observando quando tiver uma resposta de autenticação
+                    pronta
 
 
-server => npm run dev
-web => npm run dev
-DB => npx prisma studio
-mobile => npm start ou npx expo start
+                    - Iremos buscar as informações do user no Backend, através access_token, que é
+                    o token de autenticação que estamos utilizando na application 
+
+
+Para instalar as dependências e executar o projeto terá que ter instalado em sua máquina o Node.js, 
+que vem acompanhado do NPM:
+    - MAC OS:
+        - acessar o site do Node(https://nodejs.org/en/download/) 
+        e efetuar o download do arquivo de instalação
+            - após efetuar download, só seguir o passo sem erro
+        - para verificar sua versão do node, caso já tenha instalado, 
+        só executar cmd + space, para abrir a pesquisa e assim, digitar terminal
+        seguido de enter
+        - Para verificar a versão Node.js, digite:
+            - Node --version
+        - Para verificar a versão npm, digite:
+            - npm --version
+
+Após instalar o Node, Navegue para as subpastas separadas 
+de cada projeto, ou seja, web, server ou mobile e rode o comando a seguir: 
+    - npm install
+
+Para executar os projetos: 
+    - Web: npm run dev
+    - Servidor Node: npm run dev
+    - Projeto Mobile: npm start ou npx expo start
+
+Para executar e visualizar o DB (caso esteja utilizando o prisma studio): 
+    - npx prisma studio
+
+time-stop: 01:17:36
