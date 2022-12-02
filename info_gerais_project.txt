@@ -762,4 +762,4 @@ Para executar os projetos:
 Para executar e visualizar o DB (caso esteja utilizando o prisma studio): 
     - npx prisma studio
 
-time-stop: 01:17:36
+time-stop: 01:34:23
