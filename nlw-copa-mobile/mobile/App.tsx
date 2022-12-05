@@ -5,7 +5,7 @@ import { AuthContextProvider } from "./src/contexts/AuthContext";
 
 // import { New } from './src/screens/New';
 import { Pools } from './src/screens/Pools';
-import { Loading } from './src/components/Loading';
+import { Loading } from './src/components/loading';
 
 import { THEME } from './src/styles/theme'
 

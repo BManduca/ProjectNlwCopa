@@ -55,7 +55,7 @@ para automatizar algumas tarefas) => npm i prisma -D
 - npm i @prisma/client => pacote usado para conectar com o banco de dados na aplicação 
 
 => na aplicação usaremos o banco de dados SQLite e para utilizar, é so usar o seguinte comando:
-    npx prisma init --datasource-provider SQLite, senao por padrao o prisma utiliza o postgress sql 
+    npx prisma init --datasource-provider SQLite, senão por padrão o prisma utiliza o postgres sql 
 
 -> cuid ou uuid | Algoritmos para geração de strings únicas
 
@@ -70,7 +70,7 @@ npx prisma studio e tudo acontece pelo navegador
 
 => instalando um pacote como dependency de developer chamado prisma-erd-generator => npm i prisma-erd-generator @mermaid-js/mermaid-cli -D
 
-mermaid é basicamente um projeto para geração de diagramas através de codigo
+mermaid é basicamente um projeto para geração de diagramas através de código
 
 comando para dar start e gerar um diagrama => npx prisma generate
 
@@ -397,13 +397,13 @@ Tabelas presentes no projeto: Bolão, participantes, usuários, jogos, palpites
 
 
 participantes não seria mesma coisa que usuários?
- - entao, de certa forma sim, porém, como o mesmo usuário, ele pode participar de mais de um bolao, 
+ - então, de certa forma sim, porém, como o mesmo usuário, ele pode participar de mais de um bolão, 
  é precisa ter um lugar para armazenar esse relacionamento, de quais bolões esse usuário esta 
  participando e isso recebe o nome dentro do Banco relacional, de tabela pivot, que é a tabela 
  que persiste no relacionamento de muitos pra muitos 
 
 
- avatrUrl String? => no banco de dados o '?' ao lado do type significa que esse campo pode ser 
+ avatarUrl String? => no banco de dados o '?' ao lado do type significa que esse campo pode ser 
  nullable, ou seja, pode estar vazio.. 
 
 
@@ -762,4 +762,16 @@ Para executar os projetos:
 Para executar e visualizar o DB (caso esteja utilizando o prisma studio): 
     - npx prisma studio
 
-time-stop: 01:34:23
+Re-establish the link between schema.prisma and .env file
+    - npx prisma generate
+
+gerando 'commits' do banco
+    - npx prisma migrate dev
+
+gerando erd das relações das tabelas do banco e interpretador 
+    - npm i prisma-erd-generator @mermaid-js/mermaid-cli -D
+
+rodando e preparando o seed
+    - npx prisma db seed
+
+aula 02 -> 39 min

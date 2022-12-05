@@ -8,9 +8,9 @@ const prisma = new PrismaClient({
     log: ['query']
 })
 
-//primeira function executada pelo nosso codigo
-async function bootstratp() {
-    //ficará 'colocando' logs para monitoramento de tudo que esta acontecendo
+//primeira function executada pelo nosso código
+async function bootstrap() {
+    //ficará 'colocando' logs para monitora tudo que esta acontecendo
     const fastify = Fastify({
         logger: true,
     })
@@ -23,7 +23,7 @@ async function bootstratp() {
     fastify.get('/pools/count', async () => {
         const count = await prisma.pool.count()
 
-        return { count }
+        return { count } 
     })
 
     fastify.get('/users/count', async () => {
@@ -66,4 +66,4 @@ async function bootstratp() {
 
 }
 
-bootstratp()
+bootstrap()
