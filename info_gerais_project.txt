@@ -774,4 +774,26 @@ gerando erd das relações das tabelas do banco e interpretador
 rodando e preparando o seed
     - npx prisma db seed
 
-aula 02 -> 39 min
+
+------------------------------------------------------------------------------
+
+Aula 04
+
+- criar pasta routes dentro de server/src
+- criar um diretório para cada model
+
+- aproveitamos para resolver uma questão do prisma e
+criamos uma pasta lib e criamos um arquivo prisma.ts
+- foi feito isso para compartilhar a conexão com o banco
+- O Node tem um sistema interno, de singleton que é um pattern 
+que basicamente, conseguimos com que uma informação não precise 
+ser recriada e sim reaproveitada entre os arquivos.
+
+- para importar o arquivo da nova rota criada:
+    - no server.ts
+        - usaremos fastify.register()
+        - usaremos como parâmetro o nome da function: poolRoutes
+        - os plugins que criamos, para evitar conflitos no momento
+        de rodar a aplicação, as functions precisam ser async
+        - na chamada dos plugins no server.ts, colocamos na frente 
+        da chamada a palavra reservada await
