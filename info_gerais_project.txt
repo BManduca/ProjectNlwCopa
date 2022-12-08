@@ -797,3 +797,22 @@ ser recriada e sim reaproveitada entre os arquivos.
         de rodar a aplicação, as functions precisam ser async
         - na chamada dos plugins no server.ts, colocamos na frente 
         da chamada a palavra reservada await
+
+
+
+Criação de user
+
+    - na aplicação mobile, o fluxo é o seguinte
+        - a pessoa clica no button de entrar no google
+        - a aplicação mobile se comunica com o google e o
+        mesmo retorna um access_token e esse token 
+        é o que usamos para se comunica com o google
+        ew obter informações do user, isso acontece 
+        no processo de criação do user, então quando o
+        user ta se conectando, automaticamente ele está criando
+        um user, mas se caso, a pessoa já existir em nosso DB, 
+        é lógico que será retornado o user existente, mas é preciso 
+        ter esse processo para criação de user.
+
+
+aula 04 -> 16:20 mins
