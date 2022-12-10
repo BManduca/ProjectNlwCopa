@@ -814,5 +814,16 @@ Criação de user
         é lógico que será retornado o user existente, mas é preciso 
         ter esse processo para criação de user.
 
+    - Ao criarmos a rota para um user entrar em um bolão já
+    existente, quando estamos fazendo a request... será da seguinte forma:
 
-aula 04 -> 42 mins
+        fastify.post('/pools/:id/') => {
+
+        }
+
+        - podemos analisar que ao colocarmos o post e passar o endpoint, 
+        no id do bolão, colocamos um ':' antes do mesmo, aonde isso remete 
+        a uma informação dinâmica, que será repassada para o endpoint.
+
+
+aula 04 -> 1 hora
