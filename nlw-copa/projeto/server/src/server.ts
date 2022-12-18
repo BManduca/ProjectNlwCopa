@@ -33,7 +33,7 @@ async function bootstrap() {
     await fastify.register(userRoutes)
 
     //host para ajudar a executar e funcionar a parte mobile no android 
-    await fastify.listen({ port: 3333, /* host: '0.0.0.0'*/ })
+    await fastify.listen({ port: 3333, host: '0.0.0.0' })
 
 }
 

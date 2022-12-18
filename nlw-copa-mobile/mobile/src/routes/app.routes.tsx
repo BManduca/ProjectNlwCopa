@@ -8,6 +8,7 @@ import { Platform } from 'react-native';
 
 import { New } from '../screens/New';
 import { Pools } from '../screens/Pools';
+import { Find } from '../screens/Find';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -51,6 +52,13 @@ export function AppRoutes() {
           tabBarLabel: 'Meus bolões'
         }}
       />
+
+      <Screen 
+        name="find"
+        component={Find}
+        options={{ tabBarButton: () => null }}
+      />
+
     </Navigator>
   );
 }

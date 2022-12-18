@@ -826,4 +826,48 @@ Criação de user
         a uma informação dinâmica, que será repassada para o endpoint.
 
 
-aula 04 -> 1 hora
+- Mobile
+    - criação e manipulação screens, buttons....
+
+        - ao criar mais um menu na page inicial e não queremos que
+        o menu em si realmente apareça como uma função a ser exercida, 
+        podemos utilizar a seguinte estratégia.. e a rota continuará 
+        disponível..
+            - options={{ tabBarButton: () => null }}
+
+
+
+    - useNavigation
+        - Hook que permite utilizar navegação no App
+
+    - criando arquivo navigation.d.ts, dentro de nlw-copa-mobile/mobile/src/types
+        - arquivo para ter uma tipagem global, para definir as rotas que estarão 
+        disponíveis na nossa aplicação.
+
+    - Integração com o back-end
+        - Instalação Axios -> Axios é uma biblioteca que permite que a gente
+        faça requisições, obtenha resposta e conecte nosso app com o back-end
+
+    - Ao realizar a conexão com o back-end, dentro da function
+    de signInWithGoogle, teremos um bloco de tryCatch e usaremos
+    a funcionalidade do setIsUserLoading, no finally usaremos ela com 
+    valor false, para desativar o carregamento e ao começar
+    o processo de autenticação, iremos ativar a mesma...Então,
+    nós usaremos esse state para notar que, se o user esta se autenticando 
+    ou não, porque ao compartilhar com nosso contexto essa informação, 
+    nos podemos usar essa info para ativar o efeito de loading dentro 
+    do button e desabilitar o mesmo por enquanto, para mostrar para o
+    user que a solicitação dele está sendo carregada, ou seja, estamos dando
+    um feedback para o user.
+
+
+    - identificando o user nas requisições de autenticação
+        - para ter em todas as requisições que forem feitas a partir de agora
+        o token identificando quem é o usuário, ou seja, todas as requisições
+        que eu for fazer para o Backend, o user vai estar identificado
+        - O back busca por esse info no cabeçalho da requisição
+
+        const tokenResponse = await api.post('/users', { access_token });
+        api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.token}`; 
+
+aula 04 -> 01:42:31
